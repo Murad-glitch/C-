@@ -1,6 +1,6 @@
 using System;
 using System;
-using System.collection.Generic;
+using System.Collection.Generic;
 using System.Linq;
 namespace RestoranSifariSistemi
 {
