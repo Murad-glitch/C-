@@ -5,11 +5,11 @@ namespace RestoranSifariSistemi
 {
     public class Product
     {
-        public  int Id;
-        public string Name;
-        public decimal Price;
-        public string Category;
-        public bool IsAvailable;
+        int Id;
+        string Name;
+        decimal Price;
+        string Category;
+        bool IsAvailable;
 
 
         public int GetID(){return Id;}
