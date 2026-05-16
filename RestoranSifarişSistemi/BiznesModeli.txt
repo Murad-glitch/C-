@@ -1,0 +1,123 @@
+🧩 1️⃣ PO kimi – Biznes Modeli
+📌 Layihənin adı:
+Restoran Sifariş Sistemi
+🎯 Məqsəd
+Restoran daxilində və ya telefon vasitəsilə verilən sifarişlərin sistem üzərindən idarə olunması.
+Manual dəftər sistemini əvəz etmək.
+
+
+👥 Hədəf istifadəçilər
+• Kiçik və orta restoranlar
+• Kafe və fast-food obyektləri
+• Evə çatdırılma xidməti olan restoranlar
+
+
+🧠 Problem
+• Sifarişlər qarışır
+• Hesab səhvləri olur
+• Satış statistikası aparılmır
+• Ən çox satılan məhsullar bilinmir
+
+
+💡 Həll
+Sadə backend sistemi:
+• Menyu idarəetməsi
+• Sifariş yaratmaq
+• Sifariş statusu dəyişmək
+• Günlük satış hesabatı
+
+
+💰 Monetizasiya Modeli
+Basic variant:
+• Aylıq abunə modeli (məs: 20 AZN) və ya
+• Birdəfəlik lisenziya satışı
+
+
+📊 Əsas Funksionallıq
+• Menyuya məhsul əlavə etmək
+• Sifariş yaratmaq
+• Sifarişə məhsul əlavə etmək
+• Sifariş statusu dəyişmək
+• Günlük gəliri hesablamaq
+
+
+
+
+🛠 2️⃣ BA kimi – Texniki Tapşırıq (Junior Backend Developer üçün)
+📌 Texnologiya
+• Dil: C#
+• Framework: ASP.NET Core Web API
+• ORM: Entity Framework Core
+• DB: SQL Server
+• Layer: Basic 3-layer architecture 
+• Controller
+• Service
+• Repository
+• Data (DbContext)
+
+
+📂 Database Dizaynı
+1️⃣ Product (Məhsul)
+FieldTypeIdintNamestringPricedecimalCategorystringIsAvailablebool 
+2️⃣ Order (Sifariş)
+FieldTypeIdintCreatedDateDateTimeStatusstring (Pending, Preparing, Ready, Completed)TotalAmountdecimal 
+3️⃣ OrderItem (Sifariş Məhsulu)
+FieldTypeIdintOrderIdint (FK)ProductIdint (FK)QuantityintPricedecimal 
+🔗 Münasibətlər
+• 1 Order → Many OrderItems
+• 1 Product → Many OrderItems
+
+
+📌 API Endpointlər
+🟢 Product
+GET /api/products
+Bütün məhsulları gətir
+POST /api/products
+Yeni məhsul əlavə et
+PUT /api/products/{id}
+Məhsulu yenilə
+DELETE /api/products/{id}
+Məhsulu sil
+🟢 Order
+POST /api/orders
+Yeni sifariş yarat
+GET /api/orders
+Bütün sifarişlər
+GET /api/orders/{id}
+Sifariş detalı
+PUT /api/orders/{id}/status
+Status dəyişmək
+🟢 OrderItem
+POST /api/orders/{orderId}/items
+Sifarişə məhsul əlavə etmək
+
+
+📌 Biznes Qaydalar (Vacib hissə)
+1️⃣ Sifariş yaradılarkən status default olaraq "Pending" olmalıdır.
+2️⃣ OrderItem əlavə ediləndə:
+• Məhsulun qiyməti avtomatik Product-dan götürülməlidir.
+• TotalAmount avtomatik yenilənməlidir.
+3️⃣ Əgər Product IsAvailable = false-dursa sifarişə əlavə edilə bilməz.
+4️⃣ Status dəyişmə qaydası:
+• Pending → Preparing
+• Preparing → Ready
+• Ready → Completed
+Geri qaytarmaq olmaz (basic versiyada).
+🧱 Junior üçün Struktur
+/Controllers ProductController OrderController /Services ProductService OrderService /Repositories ProductRepository OrderRepository /Data AppDbContext /Models Product Order OrderItem 
+
+
+📌 Sadə Extra (Optional)
+Əlavə etmək olar:
+• Günlük satış endpointi:
+GET /api/reports/daily
+Bugünkü Completed sifarişlərin cəmi.
+
+
+🎯 Acceptance Criteria
+✔ Məhsul əlavə edilə bilir
+✔ Sifariş yaradılır
+✔ Məhsul sifarişə əlavə olunur
+✔ TotalAmount düzgün hesablanır
+✔ Status düzgün dəyişir
+✔ Database migration işləyir
