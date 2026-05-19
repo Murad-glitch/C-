@@ -9,7 +9,7 @@ namespace RestoranSifariSistemi
         int Id;
         string Status;
         decimal TotalAmount;
-        DateTime GetCreatedTime;
+        DateTime CreatedTime;
 
 
         public int GetId(){return Id;}
