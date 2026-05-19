@@ -1,5 +1,5 @@
 using System;
-using System.collection.Generic;
+using System.Collections.Generic;
 using System.Linq;
 namespace RestoranSifariSistemi
 {
